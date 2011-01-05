@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Panel
+	 xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	 xmlns:s="library://ns.adobe.com/flex/spark" 
+	 xmlns:mx="library://ns.adobe.com/flex/mx"
+	 width="330"
+	 height="200"
+	 backgroundColor="#000000"
+	 contentBackgroundColor="#000000"
+	 chromeColor="#646464"
+	 backgroundAlpha="0.6"
+	 cornerRadius="4"
+	 title="Sign in"
+	 textAlign="center"
+	 color="#F1F1F1"
+	 creationComplete="creationCompleteHandler(event)"
+	 addedToStage="init (event)"
+ skinClass="spark.skins.spark.PanelSkin">
+	
+	<fx:Metadata>
+		[Event ("signInClicked")]
+	</fx:Metadata>
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			import spark.components.Button;
+			import spark.components.TextInput;
+			
+			public static const SIGN_IN_CLICKED:String = "signInClicked";
+			
+			private var _usernameInput:TextInput;
+			private var _passwordInput:TextInput;
+			private var _signInButton:Button;
+			
+			private function creationCompleteHandler (event:FlexEvent):void
+			{
+				trace ("login popup creation complete" + "\n");
+				_usernameInput = usernameInput;
+				_passwordInput = passwordInput;
+				_signInButton = signInButton;
+				
+				_passwordInput.displayAsPassword = true;
+			}
+			
+			private function init (event:Event):void
+			{
+				this.centreX();
+			}
+			
+			private function dispatchClickEvent (event:MouseEvent):void
+			{
+				dispatchEvent (new Event (SIGN_IN_CLICKED));
+			}
+			
+			
+			public function getUsername ():String
+			{
+				return _usernameInput.text;
+			}
+			
+			public function getPassword ():String
+			{
+				return _passwordInput.text;
+			}
+			
+			public function clearPassword ():void
+			{
+				_passwordInput.text = "";
+			}
+			
+			public function centreX ():void
+			{
+				this.x = (this.stage.stageWidth/2) - (this.width/2);
+			}
+			
+			public function centreY ():void
+			{
+				this.y = (this.stage.stageHeight/2) - (this.height/2);
+			}
+			
+			public function centreXY ():void
+			{
+				this.x = (this.stage.stageWidth/2) - (this.width/2);
+				this.y = (this.stage.stageHeight/2) - (this.height/2);
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:TextArea x="21" y="28" text="username&#xd;" width="62" height="22" textAlign="left" contentBackgroundAlpha="0.0" borderVisible="false"/>
+	<s:TextArea x="21" y="60" text="password&#xd;" width="62" height="22" textAlign="left" contentBackgroundAlpha="0.0" borderVisible="false"/>
+	<s:TextInput x="91" y="28" contentBackgroundColor="#FFFFFF" width="216" id="usernameInput" color="#000000" paddingLeft="8" paddingRight="8" textAlign="left"/>
+	<s:TextInput x="91" y="60" contentBackgroundColor="#FFFFFF" width="216" id="passwordInput" color="#000000" textAlign="left" paddingLeft="8" paddingRight="8"/>
+	<s:Button x="237" y="106" label="sign in" chromeColor="#E7E7E7" color="#000000" id="signInButton" click="dispatchClickEvent (event)"/>
+	
+</s:Panel>

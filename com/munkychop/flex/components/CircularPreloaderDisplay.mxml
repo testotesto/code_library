@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" width="8" height="8"
+		 >
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import com.munkychop.actionscript.display.CircularPreloaderDisplay;
+			
+			import mx.core.UIComponent;
+			import mx.events.FlexEvent;
+			
+			private var _loaderContainer:UIComponent;
+			private var _circularPreloaderDisplay:com.munkychop.actionscript.display.CircularPreloaderDisplay;
+			
+			override protected function createChildren ():void
+			{
+				super.createChildren ();
+				
+				if (!_loaderContainer)
+				{
+					_loaderContainer = new UIComponent ();
+					_circularPreloaderDisplay = new com.munkychop.actionscript.display.CircularPreloaderDisplay;
+					
+					_loaderContainer.addChild (_circularPreloaderDisplay);
+					addElement (_loaderContainer);
+				}
+			}
+		]]>
+	</fx:Script>
+	
+</s:Group>
